@@ -15,7 +15,21 @@ class TheServer {
     });
   }
 
-  request_users() {
+  request_tasks() {
+    $.ajax("/api/v1/tasks", {
+      method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      success: (resp) => {
+        store.dispatch({
+          type: 'TASKS_LIST',
+          tasks: resp.data,
+        });
+      },
+    });
+  }
+
+ request_users() {
     $.ajax("/api/v1/users", {
       method: "get",
       dataType: "json",
@@ -38,6 +52,36 @@ class TheServer {
       success: (resp) => {
         store.dispatch({
           type: 'ADD_POST',
+          post: resp.data,
+        });
+      },
+    });
+  }
+
+  submit_task(data) {
+    $.ajax("/api/v1/tasks", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ token: data.token, task: data }),
+      success: (resp) => {
+        store.dispatch({
+          type: 'ADD_TASK',
+          post: resp.data,
+        });
+      },
+    });
+  }
+
+  submit_user(data) {
+    $.ajax("/api/v1/users", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({ user: data }),
+      success: (resp) => {
+        store.dispatch({
+          type: 'ADD_USER',
           post: resp.data,
         });
       },

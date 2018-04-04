@@ -7,6 +7,9 @@ import Nav from './nav';
 import Feed from './feed';
 import Users from './users';
 import PostForm from './post-form';
+import Report from './report';
+import TaskForm from './task-form';
+import UserForm from './user-form';
 
 export default function microblog_init(store) {
   ReactDOM.render(
@@ -35,6 +38,17 @@ let Microblog = connect((state) => state)((props) => {
           <Feed posts={_.filter(props.posts, (pp) =>
             match.params.user_id == pp.user.id )
           } />
+        } />
+        <Route path="/tasks" exact={true} render={() =>
+          <div>
+            <TaskForm />
+            <Report tasks={props.posts} />
+          </div>
+        } />
+        <Route path="/register" exact={true} render={() =>
+          <div>
+            <UserForm />
+          </div>
         } />
       </div>
     </Router>

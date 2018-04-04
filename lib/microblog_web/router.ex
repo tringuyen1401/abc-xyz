@@ -20,6 +20,8 @@ defmodule MicroblogWeb.Router do
     get "/users", PageController, :index
     get "/posts", PageController, :index
     get "/users/:id", PageController, :index
+    get "/tasks", PageController, :index
+    get "/register", PageController, :index
   end
 
   # Other scopes may use custom stacks.
@@ -27,6 +29,7 @@ defmodule MicroblogWeb.Router do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
     resources "/posts", PostController, except: [:new, :edit]
+    resources "/tasks", TaskController, except: [:new, :edit]        
     post "/token", TokenController, :create
   end
 end
