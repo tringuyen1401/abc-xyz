@@ -6,9 +6,11 @@ export default function Task(params) {
   return <Card>
     <CardBody>
       <div>
-        <p>Assined To <b>{ task.user.name }</b></p>
-        <p>{ task.title }</p>
-       <p>{ task.description }</p>
+        <p>Assigned To <b>{ task.user.name }</b></p>
+        <p>Title { task.title }</p>
+        <p>Description { task.description }</p>
+        <p>{ task.is_complete? "Completed" : "Not completed" }</p>
+        <p>{ task.assigned_at }</p>
       </div>
     </CardBody>
   </Card>;

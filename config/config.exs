@@ -6,15 +6,15 @@
 use Mix.Config
 
 # General application configuration
-config :microblog,
-  ecto_repos: [Microblog.Repo]
+config :tasktracer,
+  ecto_repos: [Tasktracer.Repo]
 
 # Configures the endpoint
-config :microblog, MicroblogWeb.Endpoint,
+config :tasktracer, TasktracerWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "cf54431DKNdHyPtWIGbum3NzZ0J4Sku0oq6BoN06LNoVWGWVSK8LZUa8J+pxcmO8",
-  render_errors: [view: MicroblogWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Microblog.PubSub,
+  render_errors: [view: TasktracerWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: Tasktracer.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger

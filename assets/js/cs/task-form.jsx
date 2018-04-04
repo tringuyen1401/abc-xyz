@@ -8,9 +8,15 @@ function TaskForm(props) {
 
   function update(ev) {
     let tgt = $(ev.target);
+    console.log(tgt.val());
 
     let data = {};
-    data[tgt.attr('name')] = tgt.val();
+    if (tgt.attr('name') === "is_complete") {
+      data["is_complete"] = tgt.val() ? true : false;
+    } else {
+      data[tgt.attr('name')] = tgt.val();
+    }
+
     let action = {
       type: 'UPDATE_TASK_FORM',
       data: data,
@@ -48,9 +54,14 @@ function TaskForm(props) {
       <Input type="textarea" name="description" value={props.task_form.description} onChange={update} />
     </FormGroup>
     <FormGroup>
-      <Label for="complete">Is complete</Label>
-      <Input type="checkbox" name="complete" value={props.task_form.complete} onChange={update} />
+      <Label for="is_complete">Is complete</Label>
+      <Input type="checkbox" name="is_complete" value={props.task_form.is_complete} onChange={update} />
     </FormGroup>
+    <FormGroup>
+      <Label for="assigned_at">Assigned At</Label>
+      <Input type="datetime-local" name="assigned_at" value={props.task_form.assigned_at} onChange={update} />
+    </FormGroup>
+   
   <Button onClick={submit} color="primary">Create</Button> &nbsp;
     <Button onClick={clear}>Clear</Button>
   </div>;

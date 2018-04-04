@@ -23,10 +23,10 @@ import "phoenix_html";
 import store from './store';
 import api from './api';
 
-import microblog_init from "./cs/microblog";
+import tasktracer_init from "./cs/tasktracer";
 $(function() {
-  api.request_posts();
   api.request_users();
-  microblog_init(store);
+  api.request_tasks();
+  tasktracer_init(store);
 });
 

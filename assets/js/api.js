@@ -1,20 +1,6 @@
 import store from './store';
 
 class TheServer {
-  request_posts() {
-    $.ajax("/api/v1/posts", {
-      method: "get",
-      dataType: "json",
-      contentType: "application/json; charset=UTF-8",
-      success: (resp) => {
-        store.dispatch({
-          type: 'POSTS_LIST',
-          posts: resp.data,
-        });
-      },
-    });
-  }
-
   request_tasks() {
     $.ajax("/api/v1/tasks", {
       method: "get",
@@ -43,21 +29,6 @@ class TheServer {
     });
   }
 
-  submit_post(data) {
-    $.ajax("/api/v1/posts", {
-      method: "post",
-      dataType: "json",
-      contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify({ token: data.token, post: data }),
-      success: (resp) => {
-        store.dispatch({
-          type: 'ADD_POST',
-          post: resp.data,
-        });
-      },
-    });
-  }
-
   submit_task(data) {
     $.ajax("/api/v1/tasks", {
       method: "post",
@@ -67,7 +38,7 @@ class TheServer {
       success: (resp) => {
         store.dispatch({
           type: 'ADD_TASK',
-          post: resp.data,
+          task: resp.data,
         });
       },
     });
@@ -82,7 +53,7 @@ class TheServer {
       success: (resp) => {
         store.dispatch({
           type: 'ADD_USER',
-          post: resp.data,
+          user: resp.data,
         });
       },
     });

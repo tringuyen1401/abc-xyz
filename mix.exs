@@ -1,9 +1,9 @@
-defmodule Microblog.Mixfile do
+defmodule Tasktracer.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :microblog,
+      app: :tasktracer,
       version: "0.0.1",
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env),
@@ -19,7 +19,7 @@ defmodule Microblog.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Microblog.Application, []},
+      mod: {Tasktracer.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

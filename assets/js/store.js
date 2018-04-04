@@ -1,30 +1,6 @@
 import { createStore, combineReducers } from 'redux';
 import deepFreeze from 'deep-freeze';
 
-/*
- *  state layout:
- *  {
- *   posts: [... Posts ...],
- *   users: [... Users ...],
- *   form: {
- *     user_id: null,
- *     body: "",
- *   }
- * }
- *
- * */
-
-function posts(state = [], action) {
-  switch (action.type) {
-  case 'POSTS_LIST':
-    return [...action.posts];
-  case 'ADD_POST':
-    return [action.post, ...state];
-  default:
-    return state;
-  }
-}
-
 function tasks(state = [], action) {
   switch (action.type) {
   case 'TASKS_LIST':
@@ -53,25 +29,20 @@ let empty_form = {
   token: "",
 };
 
-function form(state = empty_form, action) {
-  switch (action.type) {
-    case 'UPDATE_FORM':
-      return Object.assign({}, state, action.data);
-    case 'CLEAR_FORM':
-      return empty_form;
-    case 'SET_TOKEN':
-      return Object.assign({}, state, action.token);
-    default:
-      return state;
-  }
+let empty_task_form = {
+  name: "",
+  title: "",
+  description: "",
+  is_complete: false,  
+  
 }
 
-function task_form(state = empty_form, action) {
+function task_form(state = empty_task_form, action) {
   switch (action.type) {
     case 'UPDATE_TASK_FORM':
       return Object.assign({}, state, action.data);
-    case 'CLEAR_FORM':
-      return empty_form;
+    case 'CLEAR_TASK_FORM':
+      return empty_task_form;
     case 'SET_TOKEN':
       return Object.assign({}, state, action.token);
     default:
@@ -79,12 +50,16 @@ function task_form(state = empty_form, action) {
   }
 }
 
-function user_form(state = empty_form, action) {
+let empty_user_form = {
+  name: "",
+  password: ""
+}
+function user_form(state = empty_user_form, action) {
   switch (action.type) {
     case 'UPDATE_USER_FORM':
       return Object.assign({}, state, action.data);
     case 'CLEAR_USER_FORM':
-      return empty_form;
+      return empty_user_form;
     default:
       return state;
   }
@@ -117,7 +92,7 @@ function root_reducer(state0, action) {
   console.log("reducer", action);
   // {posts, users, form} is ES6 shorthand for
   // {posts: posts, users: users, form: form}
-  let reducer = combineReducers({posts, users, form, token, login, user_form, task_form});
+  let reducer = combineReducers({tasks, users, token, login, user_form, task_form});
   let state1 = reducer(state0, action);
   console.log("state1", state1);
   return deepFreeze(state1);

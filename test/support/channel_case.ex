@@ -1,4 +1,4 @@
-defmodule MicroblogWeb.ChannelCase do
+defmodule TasktracerWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,15 +21,15 @@ defmodule MicroblogWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint MicroblogWeb.Endpoint
+      @endpoint TasktracerWeb.Endpoint
     end
   end
 
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Microblog.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tasktracer.Repo)
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Microblog.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tasktracer.Repo, {:shared, self()})
     end
     :ok
   end

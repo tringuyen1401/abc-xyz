@@ -1,4 +1,4 @@
-defmodule Microblog.DataCase do
+defmodule Tasktracer.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule Microblog.DataCase do
 
   using do
     quote do
-      alias Microblog.Repo
+      alias Tasktracer.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Microblog.DataCase
+      import Tasktracer.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Microblog.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tasktracer.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Microblog.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tasktracer.Repo, {:shared, self()})
     end
 
     :ok

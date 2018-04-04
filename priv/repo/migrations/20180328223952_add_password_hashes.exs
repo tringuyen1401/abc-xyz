@@ -1,4 +1,4 @@
-defmodule Microblog.Repo.Migrations.AddPasswordHashes do
+defmodule Tasktracer.Repo.Migrations.AddPasswordHashes do
   use Ecto.Migration
 
   def change do
